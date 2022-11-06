@@ -1,0 +1,66 @@
+:root{
+    --dorado:rgb(226, 184, 47);
+    --rojo__ruleta : #c2272d;
+    --verder__ruleta: #368b43;
+}
+
+
+
+.puntero {
+    clip-path: polygon(0 10px, 60px 0, 60px 20px);
+    background: black;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    left: 85%;
+    top: 46%;
+    z-index: 1000;
+    display: none;
+}
+
+.img {
+    z-index: 100;
+    transition: all 10s;
+    width: 300px;
+    
+}
+
+.ruleta__img {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.bola {
+    position: absolute;
+    left: 76%;
+    top: 48%;
+    clip-path: circle(50% at 50% 50%);
+    background-color: white;
+    width: 12px;
+    height: 12px;
+    z-index: 1000;
+}
+
+.rojo {
+    background-color: var(--rojo__ruleta);
+    color: var(--rojo__ruleta);
+    width: 40px;
+    height: 40px;
+    clip-path: polygon(49% 16%, 100% 49%, 50% 84%, 0 50%);
+}
+
+.negro {
+    background-color: black;
+    color: black;
+    width: 40px;
+    height: 40px;
+    clip-path: polygon(49% 16%, 100% 49%, 50% 84%, 0 50%);
+}
+
+.rojo-txt {
+    color: var(--rojo__ruleta);
+}
+
+.negro-txt {
+    color: black;
+}
