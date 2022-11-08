@@ -101,6 +101,7 @@ box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
     box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .footer__tablero {
