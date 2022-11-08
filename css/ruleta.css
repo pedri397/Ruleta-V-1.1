@@ -20,7 +20,7 @@
 
 .img {
     z-index: 100;
-    transition: all 10s;
+    transition: all 1s;
     width: 300px;
     
 }
@@ -63,4 +63,11 @@
 
 .negro-txt {
     color: black;
+}
+
+.numeros__salidos {
+    font-size: 35px;
+    padding: 10px;
+    color: white;
+    border-radius: 0.75rem;
 }

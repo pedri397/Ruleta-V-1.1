@@ -2,8 +2,15 @@ let ruleta = document.getElementById("ruleta")
 let ganador__numero = document.getElementById("ganador__numero")
 let ganador__color = document.getElementById("ganador__color")
 let footer__tablero = document.getElementById("footer__tablero")
+let saldo = document.getElementById("saldo")
+// let main__numeros = Array.from(document.querySelector("#main__numeros")) /** Array.from hace que me lo devuelva en forma de array */
 
-/** MOVIENTO DE LA RULETA Y DEVUELVE EL NUMERO QUE CAE */
+let main__numeros = document.getElementById("main__numeros")
+
+saldo.textContent = 1000
+
+
+/** MOVIMIENTO DE LA RULETA Y DEVUELVE EL NUMERO QUE CAE */
 
 
 const girar =()=> {
@@ -355,16 +362,16 @@ const girar =()=> {
                 ganador__numero.classList.add("negro-txt")
                 console.log("6")
                 break;      
-        }  
-    }, 10000)
-    }
+            }  
+            comparar_apuesta()
+    }, 1000)
+}
 
     calcular(rand)
     console.log(apuesta)
 
-
     /** Reseteo la apuesta */
-    apuesta = []
+    // apuesta = []
     console.log(apuesta)
 }
 
@@ -376,11 +383,54 @@ const girar =()=> {
 let apuesta = []
 
 const guardar__apuesta=(ev)=> {
-    // console.log(ev.target.textContent)
-    let numero__apuesta = ev.target.textContent
-    apuesta.push(numero__apuesta)
-    console.log(apuesta)
+    console.log(ev.target)
+    if(ev.target.nodeName === "SPAN" && saldo.textContent >= 5){
+        let numero__apuesta = ev.target.textContent
+        apuesta.push(numero__apuesta)
+        console.log(apuesta)
 
+        saldo.textContent = saldo.textContent - 5
+        console.log(saldo)  
+    }
+}
+
+
+const comparar_apuesta=()=> {
+    let numero_acertado = ganador__numero.textContent
+
+    /** AQUI AÑADIMOS LOS NUMEROS A LA DERECHA */
+
+    /** Condicion si hay mas de 11 numero borra el mas antiguo */
+    if(main__numeros.children.length >= 10){
+        main__numeros.lastElementChild.remove()
+
+    }
+
+    let span = document.createElement("SPAN")
+    span.textContent = numero_acertado
+    span.classList.add("numeros__salidos")
+
+    if(numero_acertado % 2 == 0){
+        /** Insertar estilo si es par */
+    }else {
+        /** Insertar estilo si es impar */
+    }
+    main__numeros.prepend(span)
+    /** ---------------FIN------------- */
+
+
+    // console.log(apuesta)
+    let acertar = apuesta.includes(numero_acertado)
+    // console.log(acertar)
+    if(acertar){
+        let cantidad = apuesta.filter(cant => cant === numero_acertado).length
+        console.log(cantidad)
+        console.log("has ganado")
+    }else{
+        console.log("has perdido")
+    }
+
+    apuesta = []
 }
 
 
