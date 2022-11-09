@@ -4,6 +4,7 @@ let ganador__color = document.getElementById("ganador__color")
 let footer__tablero = document.getElementById("footer__tablero")
 let saldo = document.getElementById("saldo")
 // let main__numeros = Array.from(document.querySelector("#main__numeros")) /** Array.from hace que me lo devuelva en forma de array */
+let tablero__caja = document.getElementById("footer__tablero")
 
 let main__numeros = document.getElementById("main__numeros")
 
@@ -22,6 +23,7 @@ const girar =()=> {
         seleccion = rand / 360
         seleccion = (seleccion - parseInt(seleccion.toString().split(".")[0]))*360
         ruleta.style.transform = "rotate("+ rand +"deg)"
+        seleccion = Math.floor(seleccion)
         console.log(seleccion)
 
 
@@ -383,14 +385,36 @@ const girar =()=> {
 let apuesta = []
 
 const guardar__apuesta=(ev)=> {
-    console.log(ev.target)
-    if(ev.target.nodeName === "SPAN" && saldo.textContent >= 5){
+    // console.log(ev.target)
+    if(ev.target.nodeName === "SPAN" && saldo.textContent >= 1){
         let numero__apuesta = ev.target.textContent
         apuesta.push(numero__apuesta)
         console.log(apuesta)
+        let ficha = document.createElement("IMG")
+        ficha.src = "image/ficha__negra.png"
+        ficha.classList.add("ficha__negra-img")
+        ev.target.prepend(ficha)
 
-        saldo.textContent = saldo.textContent - 5
+        saldo.textContent = saldo.textContent - 1
         console.log(saldo)  
+        // borrar__tablero()
+    }
+}
+
+/** BORRO LAS FICHAS APOSTADAS EN EL TABLERO */
+
+const borrar__tablero =()=> {
+    // console.log("tabler__caja")
+    // console.log(tablero__caja.children.length)
+    let hijos_longitud = tablero__caja.children.length
+    let hijo = tablero__caja.children
+
+    for (let i = 0; i < hijos_longitud; i++) {
+        // console.log(hijo[i])
+
+        if(hijo[i].children[0] != undefined){
+            hijo[i].children[0].remove()
+        }
     }
 }
 
@@ -420,13 +444,24 @@ const comparar_apuesta=()=> {
     // console.log(acertar)
     if(acertar){
         let cantidad = apuesta.filter(cant => cant === numero_acertado).length
-        console.log(cantidad)
+        let ganancias 
+        // console.log(cantidad)
         console.log("has ganado")
+
+        ganancias = cantidad * 36
+        console.log(ganancias)
+        /** Mostrar ventana emergente */
+
+
+
+        /**----FIN------ */
+        saldo.textContent = ganancias + parseInt(saldo.textContent)
     }else{
         console.log("has perdido")
     }
 
     apuesta = []
+    borrar__tablero()
 }
 
 

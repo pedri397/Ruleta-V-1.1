@@ -238,13 +238,14 @@ box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
     align-items: center;
     color: white;
     font-size: 35px;
+    position: relative;
 }
 
 .ficha__negra-img {
     position: absolute;
-    width: 450px;
-    top: 680px;
-    left: 0px;
+    right: 15px;
+    width: 70px;
+    z-index: 100; 
 }
 
 .ficha__azul-img {
