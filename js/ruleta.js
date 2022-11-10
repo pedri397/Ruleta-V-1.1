@@ -5,9 +5,10 @@ let footer__tablero = document.getElementById("footer__tablero")
 let saldo = document.getElementById("saldo")
 // let main__numeros = Array.from(document.querySelector("#main__numeros")) /** Array.from hace que me lo devuelva en forma de array */
 let tablero__caja = document.getElementById("footer__tablero")
-
+let ventana__ganancias__txt = document.getElementById("ventana__ganancias__txt")
 let main__numeros = document.getElementById("main__numeros")
-
+let cantidad__apuesta = document.getElementById("cantidad__apuesta")
+let ventana__ganancias = document.getElementById("ventana__ganancias")
 saldo.textContent = 1000
 
 
@@ -116,9 +117,11 @@ const girar =()=> {
             case seleccion > 87 && seleccion <= 96:
                 ganador__numero.textContent = "0"
                 ganador__color.classList.remove("rojo", "red")
-                ganador__color.classList.add("negro", "black")
+                ganador__color.classList.remove("negro", "black")
+                ganador__color.classList.add("verde", "green")
                 ganador__numero.classList.remove("rojo-txt")
-                ganador__numero.classList.add("negro-txt")
+                ganador__numero.classList.remove("negro-txt")
+                ganador__numero.classList.add("verde-txt")
                 console.log("0")
                 break;
             /** NUMERO 26 */
@@ -385,7 +388,7 @@ const girar =()=> {
 let apuesta = []
 
 const guardar__apuesta=(ev)=> {
-    // console.log(ev.target)
+    console.log(ev.target)
     if(ev.target.nodeName === "SPAN" && saldo.textContent >= 1){
         let numero__apuesta = ev.target.textContent
         apuesta.push(numero__apuesta)
@@ -399,6 +402,7 @@ const guardar__apuesta=(ev)=> {
         console.log(saldo)  
         // borrar__tablero()
     }
+    cantidadApostada()
 }
 
 /** BORRO LAS FICHAS APOSTADAS EN EL TABLERO */
@@ -417,10 +421,23 @@ const borrar__tablero =()=> {
         }
     }
 }
+/**------FIN---- */
+
+
+
+/** CANTIDAD APOSTADA  */
+
+const cantidadApostada=()=> {
+    let cantidad_apostada = apuesta.length
+    cantidad__apuesta.textContent = cantidad_apostada
+}
+
+/**------FIN---- */
 
 
 const comparar_apuesta=()=> {
     let numero_acertado = ganador__numero.textContent
+    let color_acertado = ganador__color.classList[1]
 
     /** AQUI AÑADIMOS LOS NUMEROS A LA DERECHA */
 
@@ -441,8 +458,12 @@ const comparar_apuesta=()=> {
 
     // console.log(apuesta)
     let acertar = apuesta.includes(numero_acertado)
+    // console.log(ganador__color.classList[1])
+    let acertar__color = apuesta.includes(color_acertado)
+    // console.log(color_acertado)
     // console.log(acertar)
     if(acertar){
+        
         let cantidad = apuesta.filter(cant => cant === numero_acertado).length
         let ganancias 
         // console.log(cantidad)
@@ -450,19 +471,55 @@ const comparar_apuesta=()=> {
 
         ganancias = cantidad * 36
         console.log(ganancias)
-        /** Mostrar ventana emergente */
 
+        /** MOSTRAR VENTA EMERGENTE */
 
+        mostrarVentana(ganancias)
 
         /**----FIN------ */
+
         saldo.textContent = ganancias + parseInt(saldo.textContent)
-    }else{
+    }else if(acertar__color){
+
+        let cantidad_color = apuesta.filter(cant => cant === color_acertado).length
+        let ganancias 
+        // console.log(cantidad)
+        console.log("has ganado")
+
+        ganancias = cantidad_color * 2
+        console.log(ganancias)
+
+        /** MOSTRAR VENTA EMERGENTE */
+
+        mostrarVentana(ganancias)
+
+        /**----FIN------ */
+
+        saldo.textContent = ganancias + parseInt(saldo.textContent)        
+    }else if(!acertar && !acertar__color){
         console.log("has perdido")
     }
-
+    
     apuesta = []
     borrar__tablero()
 }
+
+
+/** MOSTRAR VENTA EMERGENTE */
+
+const mostrarVentana =(ganancias)=> {
+
+    ventana__ganancias.classList.add("transicion__ganancias")
+    ventana__ganancias.style = "display: flex"
+    ventana__ganancias__txt.textContent = ganancias
+
+    setTimeout(()=>{
+        ventana__ganancias.style = "display = none"
+        ventana__ganancias.classList.remove("transicion__ganancias")
+    }, 3000)
+}
+
+/**----FIN------ */
 
 
 

@@ -30,7 +30,7 @@
 
             <div class="main__ganador">
                 <h2 class="ganador__txt">Numero</h2>
-                <span class="ganador__numero" id="ganador__numero"></span>
+                <span class="ganador__numero" id="ganador__numero">-</span>
                 <div class="ganador__color" id="ganador__color"></div>
             </div>
 
@@ -49,10 +49,15 @@
         <!-- Empieza el Footer-->
         <footer class="footer">
 
+            <div class="ventana__ganancias" id="ventana__ganancias">
+                <span class="vetana__ganancias--tit">Has Ganado</span>
+                <span class="ventana__ganancias--txt" id="ventana__ganancias__txt"></span>
+            </div>
+
             <div class="footer__container">
                 <!-- Tablero-->
                 <div class="footer__tablero" id="footer__tablero">
-                    <span class="tablero__caja verde">0</span>
+                    <span class="tablero__caja verde-tabla">0</span>
                     <span class="tablero__caja rojo-tabla">1</span>
                     <span class="tablero__caja negro-tabla">2</span>
                     <span class="tablero__caja rojo-tabla">3</span>
@@ -89,8 +94,8 @@
                     <span class="tablero__caja rojo-tabla">34</span>
                     <span class="tablero__caja negro-tabla">35</span> 
                     <span class="tablero__caja rojo-tabla">36</span>
-                    <span class="tablero__caja negro-tabla negro-apuesta"></span> 
-                    <span class="tablero__caja rojo-tabla rojo-apuesta"></span>        
+                    <span class="tablero__caja negro-tabla negro-apuesta">negro</span> 
+                    <span class="tablero__caja rojo-tabla rojo-apuesta">rojo</span>        
                 </div>
 
                 <!-- <div class="ficha__negra">
@@ -107,8 +112,12 @@
                 </div> -->
 
                 <div class="saldo">
-                    <h2 class="saldo__titulo">Saldo</h2>
-                    <span class="saldo__txt" id="saldo"></span>
+                    <h2 class="saldo__titulo">Saldo 
+                        <p class="saldo__txt" id="saldo"></p>
+                    </h2>
+                    <h2 class="saldo__titulo apuesta">Apuesta 
+                        <p class="saldo__txt" id="cantidad__apuesta"></p>
+                    </h2>
                 </div>
             </div>
 

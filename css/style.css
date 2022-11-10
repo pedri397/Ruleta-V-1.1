@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Ruleta";
+    src: url(../font/Lemon\ Days.ttf);
+}
+
 :root{
     --dorado:rgb(226, 184, 47);
     --rojo__ruleta : #c2272d;
@@ -6,7 +11,7 @@
 
 body {
     margin: 0 auto;
-    background-image: url("../image/cesped.png");
+    background-image: url("../image/cesped-titulo.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     overflow-y: hidden;
@@ -44,8 +49,8 @@ body {
     background-color: rgb(118, 22, 15);
     background-image: url("../image/fondo-numeros.jpg");
     color: var(--dorado);
-    clip-path: polygon(21% 100%, 78% 100%, 100% 42%, 100% 0, 48% 0, 0 0, 0 45%);
     border: 4px solid rgba(0, 0, 0, 0.37);
+    font-family: Ruleta;
 }
 
 .main {
@@ -73,10 +78,12 @@ box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
     width: 200px;
     font-variant: small-caps;
     font-size: 25px;
+    font-family: Ruleta;
+    border-radius: 0.25rem;
 }
 
 .ganador__txt {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.496);
     color: white;
     padding: 15px;
     border-radius: 0.55rem;
@@ -90,11 +97,12 @@ box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
 
 
 .main__numeros{
-    border: 5px solid rgb(48, 8, 5);
+    border: 5px solid var(--dorado);
     width: 600px;
     height: 50%;
     background-color: rgb(52, 85, 95);
-    background-image: url("../image/fondo-numeros.jpg");
+    background-image: url("../image/fondo-ruleta.jpg");
+    background-size: cover;
     border-radius: 0.25rem;
     -webkit-box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
@@ -116,15 +124,20 @@ box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
                          -webkit-box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
                          -moz-box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
                          box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
+                         position: relative;
+                         font-family: Ruleta;
+                         
 }
 
 .footer__container {
     width: 80%;
     margin: auto;
     margin-top: 60px;
+    display: flex;
+    flex-direction: column;
 }
 
-.verde {
+.verde-tabla {
     background-color: var(--verder__ruleta);
 }
 
@@ -263,21 +276,37 @@ box-shadow: -1px 12px 33px 5px rgba(0,0,0,0.75);
 }
 
 .saldo {
-    position: absolute;
-    text-align: center;
-    left: 800px;
-    top: 790px;
+    display: flex;
+
 }
 
 .saldo__titulo {
-    background-color: black;
-    padding: 10px;
-    color: white;
-    border: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.405);
+    text-align: center;
+    padding: 15px;
+    height: 80px;
+    color: rgb(119, 187, 130);
+    display: flex;
+    border: 2px solid rgba(89, 79, 35, 0.074);
+    flex-direction: column;
+    border-radius: 0.75rem;
+    font-family: Ruleta;
+    border: 2px solid black;
 }
 .saldo__txt {
-    border: 2px solid black;
-    width: 100%;
-    padding: 22px;
     font-weight: bold;
+    text-align: center;
+    color: white;
+    
+}
+
+.verde-txt {
+    color: var(--verder__ruleta);
+}
+
+.verde {
+    background-color: var(--verder__ruleta);
+    width: 40px;
+    height: 40px;
+    clip-path: polygon(49% 16%, 100% 49%, 50% 84%, 0 50%);
 }
