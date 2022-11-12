@@ -9,6 +9,7 @@ let ventana__ganancias__txt = document.getElementById("ventana__ganancias__txt")
 let main__numeros = document.getElementById("main__numeros")
 let cantidad__apuesta = document.getElementById("cantidad__apuesta")
 let ventana__ganancias = document.getElementById("ventana__ganancias")
+let boton__lanzar = document.getElementById("boton__lanzar")
 saldo.textContent = 1000
 
 
@@ -396,7 +397,7 @@ const guardar__apuesta=(ev)=> {
         let ficha = document.createElement("IMG")
         ficha.src = "image/ficha__negra.png"
         ficha.classList.add("ficha__negra-img")
-        ev.target.prepend(ficha)
+        ev.target.appendChild(ficha)
 
         saldo.textContent = saldo.textContent - 1
         console.log(saldo)  
@@ -408,16 +409,25 @@ const guardar__apuesta=(ev)=> {
 /** BORRO LAS FICHAS APOSTADAS EN EL TABLERO */
 
 const borrar__tablero =()=> {
-    // console.log("tabler__caja")
+    // console.log(ficha)
     // console.log(tablero__caja.children.length)
     let hijos_longitud = tablero__caja.children.length
     let hijo = tablero__caja.children
+    // console.log(hijo[0].children.length)
 
     for (let i = 0; i < hijos_longitud; i++) {
-        // console.log(hijo[i])
 
-        if(hijo[i].children[0] != undefined){
-            hijo[i].children[0].remove()
+        for (let j = hijo[i].children.length; j >= 0; j--) {
+            // console.log(hijo[i].children[j])
+            let borrar = hijo[i].children[j]
+            
+            if(borrar != undefined && borrar.nodeName == "IMG"){
+                // console.log(hijo[i].children[j])
+                // console.log("entra")
+                borrar.remove()
+            }
+            
+            
         }
     }
 }
@@ -451,6 +461,7 @@ const comparar_apuesta=()=> {
     span.textContent = numero_acertado
     span.classList.add("numeros__salidos")
     span.style = "background-color: " + ganador__color.classList[2]
+    ganador__color.classList.remove("verde")
     
     main__numeros.prepend(span)
     /** ---------------FIN------------- */
@@ -522,6 +533,18 @@ const mostrarVentana =(ganancias)=> {
 /**----FIN------ */
 
 
+/** BOTON LANZAR BOLA PULSADO */
 
+const lanzarBola =()=> {
+
+    setTimeout(()=>{
+        boton__lanzar.classList.remove("boton__lanzar--pulsado")   
+    }, 200)
+    boton__lanzar.classList.add("boton__lanzar--pulsado")
+}
+/**----FIN------ */
+
+boton__lanzar.addEventListener("click", girar)
+boton__lanzar.addEventListener("click", lanzarBola)
 footer__tablero.addEventListener("click", guardar__apuesta)
-ruleta.addEventListener("click", girar)
+// ruleta.addEventListener("click", girar)
